@@ -1,16 +1,46 @@
+<!-- login.component.html -->
 <div class="card">
   <div class="card-body">
-    <!-- <h1 class="card-title">Login</h1>
-      ...
-      <form [formGroup]="loginForm" autocomplete="off" novalidate (ngSubmit)="loginUser(loginForm.value)">
-          ...
-      </form> -->
+    <h1 class="card-title">Login</h1>
+    <form
+      [formGroup]="loginForm"
+      autocomplete="off"
+      novalidate
+      (ngSubmit)="loginUser()"
+    >
+      <!-- Email Field -->
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          id="email"
+          type="email"
+          class="form-control"
+          formControlName="email"
+        />
+      </div>
+      <!-- Password Field -->
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          id="password"
+          type="password"
+          class="form-control"
+          formControlName="password"
+        />
+      </div>
+      <!-- Submit Button -->
+      <button type="submit" class="btn btn-primary" [disabled]="loading">
+        Login
+      </button>
+    </form>
     <hr />
+    <!-- External Providers Section -->
     <div>
       <h2>External Providers</h2>
       <div style="padding: 20px">
-        <button class="btn btn-info" type="button" (click)="externalLogin()">
-          Google
+        <!-- (click)="externalLogin()" -->
+        <button class="btn btn-outline-info" type="button">
+          Login with Google
         </button>
       </div>
     </div>

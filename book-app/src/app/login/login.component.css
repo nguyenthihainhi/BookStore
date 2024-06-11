@@ -1,0 +1,32 @@
+.card {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+  }
+  
+  .card-title {
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .invalid-feedback {
+    color: red;
+  }
+  
+  .btn {
+    width: 100%;
+  }
+  
+  .btn-info {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .btn-info:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+  

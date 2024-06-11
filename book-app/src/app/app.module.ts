@@ -5,15 +5,16 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { routes } from './app.routes'; 
 import { ReactiveFormsModule } from '@angular/forms';
-import { ModalModule } from 'ngx-bootstrap/modal';
 import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
 import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
+import { ErrorHandlerService } from './service/error-handler.service';
 
 import { AppComponent } from './app.component';
 import { ListAuthorComponent } from './list-author/list-author.component';
 import { ListPublisherComponent } from './list-publisher/list-publisher.component';
 import { LoginComponent } from './login/login.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+
 @NgModule({
   declarations: [
     AppComponent, 
@@ -29,10 +30,14 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     HttpClientModule, 
     ReactiveFormsModule,
     RouterModule.forRoot(routes, {enableTracing: true}), 
-    ModalModule.forRoot(),
     SocialLoginModule,
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorHandlerService,
+      multi: true
+    },
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
@@ -40,11 +45,19 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
         providers: [
           {
             id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider('client-id'),
+            provider: new GoogleLoginProvider(
+              '399669106700-7r82t4a5lb7kb7n2eb4o3h55tg768vbs.apps.googleusercontent.com', {
+                scopes: 'email',
+               
+              }
+            )
           },
         ],
-      } as SocialAuthServiceConfig,
-    },
+        onError: (err) => {
+          console.error(err);
+        }
+      } as SocialAuthServiceConfig
+    }
   ],
    
   bootstrap: [AppComponent],

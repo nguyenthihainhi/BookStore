@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { ListAuthorComponent } from './list-author/list-author.component';
 import { ListPublisherComponent } from './list-publisher/list-publisher.component';
 import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
 
 export const routes: Routes = [
     {path: 'login', component: LoginComponent},
