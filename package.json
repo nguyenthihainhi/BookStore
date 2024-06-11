@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "@abacritt/angularx-social-login": "^2.3.0",
-    "@auth0/angular-jwt": "^5.2.0"
-  }
-}
