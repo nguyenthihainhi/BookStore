@@ -13,12 +13,14 @@ import { AppComponent } from './app.component';
 import { ListAuthorComponent } from './list-author/list-author.component';
 import { ListPublisherComponent } from './list-publisher/list-publisher.component';
 import { LoginComponent } from './login/login.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 @NgModule({
   declarations: [
     AppComponent, 
     ListAuthorComponent,
     ListPublisherComponent,
     LoginComponent,
+    NavBarComponent,
   ],
   imports: [
     BrowserModule, 

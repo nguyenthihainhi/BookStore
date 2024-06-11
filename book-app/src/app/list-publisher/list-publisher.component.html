@@ -1,69 +1,86 @@
-<h1>Enter Publisher Information</h1>
-<div class="row">
-  <div class="col-lg-6 col-md-6 col-sm-12">
-    <div class="mb-3 row">
-      <label for="name" class="col-sm-3 col-form-label">First Name</label>
-      <div class="col-sm-9">
-        <input
-          type="text"
-          class="form-control"
-          id="name"
-          placeholder="publisher's name"
-          [(ngModel)]="publisher.publisherName"
-        />
-      </div>
+<div class="container-fluid mt-3">
+  <div class="row">
+    <div class="col-sm-3 col-md-3 nav-right p-0">
+      <app-nav-bar></app-nav-bar>
     </div>
-    <div class="mb-3 row">
-      <label for="city" class="col-sm-3 col-form-label">City</label>
-      <div class="col-sm-9">
-        <select class="form-control" id="city" [(ngModel)]="selectedCity">
-          <option value="" disabled selected>select city...</option>
-          <option *ngFor="let city of cities" [value]="city.name">
-            {{ city.name }}
-          </option>
-        </select>
+    <div class="col-sm-9 col-md-9">
+      <h1>Enter Publisher Information</h1>
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <div class="mb-3 row">
+            <label for="name" class="col-sm-3 col-form-label">First Name</label>
+            <div class="col-sm-9">
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                placeholder="publisher's name"
+                [(ngModel)]="publisher.publisherName"
+              />
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="city" class="col-sm-3 col-form-label">City</label>
+            <div class="col-sm-9">
+              <select class="form-control" id="city" [(ngModel)]="selectedCity">
+                <option value="" disabled selected>select city...</option>
+                <option *ngFor="let city of cities" [value]="city.name">
+                  {{ city.name }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <div class="col-sm-3 col-form-label"></div>
+            <div class="col-sm-9">
+              <button
+                (click)="addPublisher()"
+                class="btn btn-outline-primary me-3"
+              >
+                Add
+              </button>
+              <button
+                (click)="updatePublisher()"
+                class="btn btn-outline-primary me-3"
+              >
+                Update
+              </button>
+              <button class="btn btn-danger" (click)="clearForm()">
+                Clear
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="mb-3 row">
-      <div class="col-sm-3 col-form-label"></div>
-      <div class="col-sm-9">
-        <button (click)="addPublisher()" class="btn btn-outline-primary me-3">
-          Add
-        </button>
-        <button
-          (click)="updatePublisher()"
-          class="btn btn-outline-primary me-3"
-        >
-          Update
-        </button>
-        <button class="btn btn-danger" (click)="clearForm()">Clear</button>
-      </div>
+      <h2>Publishers</h2>
+      <table class="table table-hover mt-3">
+        <thead class="table-primary">
+          <tr>
+            <th class="p-4">PublisherId</th>
+            <th class="p-4">PublisherName</th>
+            <th class="p-4">City</th>
+            <th class="p-4">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of publishers">
+            <td class="p-3">{{ item.pubId }}</td>
+            <td class="p-3">{{ item.publisherName }}</td>
+            <td class="p-3">{{ item.city }}</td>
+            <td class="p-3">
+              <a class="me-3"
+                ><i class="far fa-edit" (click)="getPublisher(item)"></i
+              ></a>
+              <a class="text-danger"
+                ><i
+                  class="fas fa-trash-alt"
+                  (click)="deletePublisher(item.pubId)"
+                ></i
+              ></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
-<h2>Publishers</h2>
-<table class="table table-hover mt-3">
-  <thead class="table-primary">
-    <tr>
-      <th class="p-4">PublisherId</th>
-      <th class="p-4">PublisherName</th>
-      <th class="p-4">City</th>
-      <th class="p-4">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let item of publishers">
-      <td class="p-3">{{ item.pubId }}</td>
-      <td class="p-3">{{ item.publisherName }}</td>
-      <td class="p-3">{{ item.city }}</td>
-      <td class="p-3">
-        <a class="me-3"
-          ><i class="far fa-edit" (click)="getPublisher(item)"></i
-        ></a>
-        <a class="text-danger"
-          ><i class="fas fa-trash-alt" (click)="deletePublisher(item.pubId)"></i
-        ></a>
-      </td>
-    </tr>
-  </tbody>
-</table>
