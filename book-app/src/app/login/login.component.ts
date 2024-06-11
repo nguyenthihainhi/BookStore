@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router, ActivatedRoute, ParamMap} from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
@@ -15,8 +16,9 @@ import { ExternalAuthDto } from '../interfaces/ExternalAuthDto';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
-  socialUser!: SocialUser;
   showError?: boolean;
+  errorMessage?: String;
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -45,19 +47,19 @@ export class LoginComponent implements OnInit {
         // this.validateExternalAuth(externalAuth);
       })
     }
-    // private validateExternalAuth(externalAuth: ExternalAuthDto) {
-    //   this.authService.externalLogin('api/accounts/externallogin', externalAuth)
-    //     .subscribe({
-    //       next: (res: any) => {
-    //         localStorage.setItem("token", res.token);
-    //         this.authService.sendAuthStateChangeNotification(res.isAuthSuccessful);
-    //         this.router.navigate(['/home']); // Assuming '/home' is the route to navigate after successful login
-    //       },
-    //       error: (err: HttpErrorResponse) => {
-    //         this.errorMessage = err.message;
-    //         this.showError = true;
-    //         this.authService.signOutExternal();
-    //       }
-    //     });
-    // }
+    private validateExternalAuth(externalAuth: ExternalAuthDto) {
+      this.authService.externalLogin('api/accounts/externallogin', externalAuth)
+        .subscribe({
+          next: (res: any) => {
+            localStorage.setItem("token", res.token);
+            this.authService.sendAuthStateChangeNotification(res.isAuthSuccessful);
+            this.router.navigate(['/home']); // Assuming '/home' is the route to navigate after successful login
+          },
+          error: (err: HttpErrorResponse) => {
+            this.errorMessage = err.message;
+            this.showError = true;
+            this.authService.signOutExternal();
+          }
+        });
+    }
 }

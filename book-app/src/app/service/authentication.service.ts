@@ -30,6 +30,12 @@ export class AuthenticationService {
       this.externalAuthService.signOut();
     }
     public externalLogin = (route: string, body: ExternalAuthDto) => {
-      // return this.http.post<AuthResponseDto>(this.createCompleteRoute(route, this.envUrl.urlAddress), body);
+      return this.http.post(this.createCompleteRoute(route, 'this.envUrl.urlAddress' ), body);
+    }
+    sendAuthStateChangeNotification(isAuthenticated: boolean) {
+      this.authChangeSub.next(isAuthenticated);
+    }
+    private createCompleteRoute(route: string, baseUrl: string): string {
+      return `${baseUrl}/${route}`;
     }
 }
