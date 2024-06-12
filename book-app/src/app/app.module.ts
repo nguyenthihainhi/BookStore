@@ -6,7 +6,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { routes } from './app.routes'; 
 import { ReactiveFormsModule } from '@angular/forms';
 import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
-import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
+import { GoogleLoginProvider, GoogleSigninButtonModule } from '@abacritt/angularx-social-login';
 import { ErrorHandlerService } from './service/error-handler.service';
 
 import { AppComponent } from './app.component';
@@ -31,13 +31,9 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     ReactiveFormsModule,
     RouterModule.forRoot(routes, {enableTracing: true}), 
     SocialLoginModule,
+    GoogleSigninButtonModule
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ErrorHandlerService,
-      multi: true
-    },
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
@@ -46,17 +42,14 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-              '399669106700-7r82t4a5lb7kb7n2eb4o3h55tg768vbs.apps.googleusercontent.com', {
-                scopes: 'email',
-               
-              }
+              '340351071914-5t0m80o6qnf7a8q7ad66482blh4gc0e9.apps.googleusercontent.com'
             )
           },
         ],
         onError: (err) => {
           console.error(err);
         }
-      } as SocialAuthServiceConfig
+      } as SocialAuthServiceConfig,
     }
   ],
    

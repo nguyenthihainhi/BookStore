@@ -2,13 +2,13 @@
 <div class="card">
   <div class="card-body">
     <h1 class="card-title">Login</h1>
-    <form
+    <!-- <form
       [formGroup]="loginForm"
       autocomplete="off"
       novalidate
       (ngSubmit)="loginUser()"
     >
-      <!-- Email Field -->
+
       <div class="form-group">
         <label for="email">Email</label>
         <input
@@ -18,7 +18,7 @@
           formControlName="email"
         />
       </div>
-      <!-- Password Field -->
+
       <div class="form-group">
         <label for="password">Password</label>
         <input
@@ -28,21 +28,27 @@
           formControlName="password"
         />
       </div>
-      <!-- Submit Button -->
+      
       <button type="submit" class="btn btn-primary" [disabled]="loading">
         Login
       </button>
-    </form>
+    </form> -->
     <hr />
     <!-- External Providers Section -->
-    <div>
+    <!-- <div>
       <h2>External Providers</h2>
-      <div style="padding: 20px">
-        <!-- (click)="externalLogin()" -->
-        <button class="btn btn-outline-info" type="button">
+      <div style="padding: 20px"> -->
+    <!-- (click)="externalLogin()" -->
+    <!-- <button class="btn btn-outline-info" type="button">
           Login with Google
         </button>
       </div>
     </div>
+  </div>
+</div> -->
+    <asl-google-signin-button
+      type="icon"
+      size="medium"
+    ></asl-google-signin-button>
   </div>
 </div>
